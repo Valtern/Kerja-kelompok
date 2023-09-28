@@ -1,7 +1,7 @@
-Halo, ini adalah tugas kelompok kami
+DasPro Practice group project
+Theme: Cafeteria system
 
-Kelompok :
-- Antonius
+Member:
+- Antonius 
 - Krisna
 - Golden
-Doing the right thing ?
