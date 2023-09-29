@@ -95,6 +95,34 @@ public class Main {
                 foodN = "";
                 System.out.println("You did not choose any food");
         }
-
+        System.out.println("Here is our beverage menu. Please order a beverage");
+        System.out.println("1. Ice tea (6000)\n2. Lemon tea (8000) \n3. Mineral water (3000) \n4. Orange juices (11000) \n5. Suspicious drink (99999)");
+        drinkS = sc.nextInt();
+        switch (drinkS) {
+            case 1:
+                drinkP = 6000;
+                drinkN = "Ice tea";
+                break;
+            case 2:
+                drinkP = 8000;
+                drinkN = "Lemon tea";
+                break;
+            case 3:
+                drinkP = 3000;
+                drinkN = "Mineral water";
+                break;
+            case 4:
+                drinkP = 11000;
+                drinkN = "Orange juice";
+                break;
+            case 5:
+                drinkP = 99999;
+                drinkN = "Suspicious drink";
+                break;
+            default:
+                drinkP = 0;
+                drinkN = "";
+                System.out.println("You did not choose any drink");
+        }
     }
 }
