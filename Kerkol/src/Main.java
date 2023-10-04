@@ -55,6 +55,74 @@ public class Main {
         } else if (consent1.endsWith("o")) {
             System.out.println("You choose to not see the special combo");
         }
-
+        System.out.println("Here is our food menu. Please order a food");
+        System.out.println("1. Chicken friend rice (27000) \n2. Shrimp fried rice (28000) \n3. Chicken katsu with rice (26000) \n4. Goat fried rice (30000) \n5. Beef katsu with rice (35000) \n6. Fried onion rings (12000) \n7. Fried mushroom (14000) \n8. Friend chicken skin (16000) ");
+        foodS = sc.nextInt();
+        switch (foodS) {
+            case 1:
+                foodP = 27000;
+                foodN = "Chiken fried rice";
+                break;
+            case 2:
+                foodP = 28000;
+                foodN = "Shrimp fried rice";
+                break;
+            case 3:
+                foodP = 26000;
+                foodN = "Chicken katsu with rice";
+                break;
+            case 4:
+                foodP = 30000;
+                foodN = "Goat fried rice";
+            case 5:
+                foodP = 35000;
+                foodN = "Beef katsu with rice";
+                break;
+            case 6:
+                foodP = 12000;
+                foodN = "Fried onion ring";
+                break;
+            case 7:
+                foodP = 14000;
+                foodN = "Fried mushroom";
+                break;
+            case 8:
+                foodP = 16000;
+                foodN = "Friend chicken skin";
+                break;
+            default:
+                foodP = 0;
+                foodN = "";
+                System.out.println("You did not choose any food");
+        }
+        System.out.println("Here is our beverage menu. Please order a beverage");
+        System.out.println("1. Ice tea (6000)\n2. Lemon tea (8000) \n3. Mineral water (3000) \n4. Orange juices (11000) \n5. Suspicious drink (99999)");
+        drinkS = sc.nextInt();
+        switch (drinkS) {
+            case 1:
+                drinkP = 6000;
+                drinkN = "Ice tea";
+                break;
+            case 2:
+                drinkP = 8000;
+                drinkN = "Lemon tea";
+                break;
+            case 3:
+                drinkP = 3000;
+                drinkN = "Mineral water";
+                break;
+            case 4:
+                drinkP = 11000;
+                drinkN = "Orange juice";
+                break;
+            case 5:
+                drinkP = 99999;
+                drinkN = "Suspicious drink";
+                break;
+            default:
+                drinkP = 0;
+                drinkN = "";
+                System.out.println("You did not choose any drink");
+        }
     }
 }
