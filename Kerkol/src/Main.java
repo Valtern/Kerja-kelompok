@@ -124,5 +124,29 @@ public class Main {
                 drinkN = "";
                 System.out.println("You did not choose any drink");
         }
+        fanddP = drinkP + foodP + totalC;
+        if (fanddP >= 50000 && fanddP <= 99999) {
+            totalDisc = fanddP;
+            totalDisc = (int) (fanddP * 0.90);
+            totalSave = (int) (fanddP * 0.10);
+            curDisc = "You got a 10% discount";
+        } else if (fanddP >= 100000) {
+            totalDisc = fanddP;
+            totalDisc = (int) (fanddP * 0.85);
+            totalSave = (int) (fanddP * 0.15);
+            curDisc = "You got a 15% discount";
+        } else {
+            totalDisc = fanddP + totalDisc;
+            System.out.println("You didn't get any special discount");
+        }
+        totalDwF = totalDisc + custFee;
+        total = (int) (totalDwF * tax);
+        pTax = (int) (totalDwF * 0.10);
+        System.out.println("Your receipt:");
+        System.out.println(customerN + "\n" + date + "\n" + "Gender: " + genderh);
+        System.out.println(comboN + "\n" + foodN + "\n" + drinkN + "\n");
+        System.out.println(curDisc + "\n");
+        System.out.println("Original price: " + fanddP + "\n" + "Original discount price: "+ totalDisc + "\nYou saved a total of: " + totalSave +"\nCustomer fee: 3000"+ "\n" + "Tax (10%): " + pTax);
+        System.out.println("Total: " + total);
     }
 }
