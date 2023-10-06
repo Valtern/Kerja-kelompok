@@ -1,21 +1,31 @@
 import java.util.Scanner;
-public class Main {
-    public static void main(String[] args) {
+class proyek {
+    public static void main(String [] args) {
         Scanner sc = new Scanner(System.in);
-        String foodN = null, drinkN = null, customerN, date, consent1, gender, comboN="", curDisc= "";
+        String foodN = null, drinkN = null, customerN, date, consent1, gender, comboN="", curDisc= "", takeOrDine, eatconcl = "";
         char genderh = 0;
-        int foodP = 1, drinkP = 1, fanddP, totalC = 0, custFee = 3000, comboP, foodS, drinkS, totalDisc = 0, totalDwF, total, totalSave = 0, pTax;
+        int foodP = 1, drinkP = 1, fanddP, totalC = 0, custFee = 3000, comboP, foodS, drinkS, totalDisc = 0, totalDwF, total, totalSave = 0, pTax, restauFee = 0;
         double discount;
         double tax = 1.10;
+        System.out.println("Take away or dine in?");
+        takeOrDine = sc.nextLine();
+        if (takeOrDine.endsWith("ay")) {
+            restauFee = 4000;
+            eatconcl = "Take away";
+            System.out.println("Take away order");
+        } else if (takeOrDine.endsWith("in")) {
+            System.out.println("Dine in order");
+            eatconcl = "Dine in";
+        }
         System.out.println("Please enter your name:");
         customerN = sc.nextLine();
         System.out.println("Enter the current date (DD/MM/YYYY)");
         date = sc.nextLine();
         System.out.println("Are you a male or a female  (Male/Female)");
         gender = sc.nextLine();
-        if (gender.contains("ma")) {
+        if (gender.equalsIgnoreCase("male")) {
             genderh = 'M';
-        } else if (gender.contains("fe")) {
+        } else if (gender.equalsIgnoreCase("female")) {
             genderh = 'F';
         } else {
             genderh = '?';
@@ -23,7 +33,7 @@ public class Main {
         }
         System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
         consent1 = sc.next();
-        if (consent1.endsWith("s")) {
+        if (consent1.equalsIgnoreCase("yes")) {
             System.out.println("The combo that is current up are:");
             System.out.println("1. Chicken fried rice with tea (30000) \n2. Shrimp fried rice with tea (33000) \n3. Chicken katsu (with rice) with lemon tea (31000) \n4. Beef katsu (with rice) with lemon tea (46000) \n5. Goat fried rice with tea (39000)");
             comboP = sc.nextInt();
@@ -52,7 +62,7 @@ public class Main {
                     comboN = "";
                     System.out.println("You didn't choose any combo");
             }
-        } else if (consent1.endsWith("o")) {
+        } else {
             System.out.println("You choose to not see the special combo");
         }
         System.out.println("Here is our food menu. Please order a food");
@@ -126,12 +136,10 @@ public class Main {
         }
         fanddP = drinkP + foodP + totalC;
         if (fanddP >= 50000 && fanddP <= 99999) {
-            totalDisc = fanddP;
             totalDisc = (int) (fanddP * 0.90);
             totalSave = (int) (fanddP * 0.10);
             curDisc = "You got a 10% discount";
         } else if (fanddP >= 100000) {
-            totalDisc = fanddP;
             totalDisc = (int) (fanddP * 0.85);
             totalSave = (int) (fanddP * 0.15);
             curDisc = "You got a 15% discount";
@@ -139,14 +147,27 @@ public class Main {
             totalDisc = fanddP + totalDisc;
             System.out.println("You didn't get any special discount");
         }
-        totalDwF = totalDisc + custFee;
+        totalDwF = totalDisc + custFee + restauFee;
         total = (int) (totalDwF * tax);
         pTax = (int) (totalDwF * 0.10);
         System.out.println("Your receipt:");
-        System.out.println(customerN + "\n" + date + "\n" + "Gender: " + genderh);
-        System.out.println(comboN + "\n" + foodN + "\n" + drinkN + "\n");
+        System.out.println(eatconcl);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Customer name: " + customerN + "\n" + "Gender: " + genderh);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Food that you ordered:");
+        System.out.println(comboN + "\n" + foodN + "\n" + drinkN);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(curDisc + "\n");
         System.out.println("Original price: " + fanddP + "\n" + "Original discount price: "+ totalDisc + "\nYou saved a total of: " + totalSave +"\nCustomer fee: 3000"+ "\n" + "Tax (10%): " + pTax);
+        if (eatconcl.equals("Dine in")) {
+            System.out.println("Dine in order");
+        } else if (eatconcl.equals("Take away")) {
+            System.out.println("Take away order");
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Total: " + total);
+        System.out.println(date);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 }
