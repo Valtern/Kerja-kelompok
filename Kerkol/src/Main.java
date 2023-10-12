@@ -3,10 +3,11 @@ import java.util.Scanner;
 class proyek {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String customerN, date, gender, takeOrDine, eatconcl = "";
+        String customerN = "", date = "", gender, takeOrDine, eatconcl = "", confirm = "";
         char genderh = 0;
         int totalC = 0, custFee = 3000, totalDisc = 0, pTax, restauFee = 0;
         double tax = 1.10;
+        boolean consent2 = true;
 
         System.out.println("Take away or dine in?");
         takeOrDine = sc.nextLine();
@@ -18,24 +19,33 @@ class proyek {
             System.out.println("Dine in order");
             eatconcl = "Dine in";
         }
+        while (consent2) {
+            System.out.println("Please enter your name:");
+            customerN = sc.nextLine();
 
-        System.out.println("Please enter your name:");
-        customerN = sc.nextLine();
+            System.out.println("Enter the current date (DD/MM/YYYY)");
+            date = sc.nextLine();
 
-        System.out.println("Enter the current date (DD/MM/YYYY)");
-        date = sc.nextLine();
+            System.out.println("Are you a male or a female  (Male/Female)");
+            gender = sc.nextLine();
+            if (gender.equalsIgnoreCase("male")) {
+                genderh = 'M';
+            } else if (gender.equalsIgnoreCase("female")) {
+                genderh = 'F';
+            } else {
+                genderh = '?';
+                System.out.println("You choose to hide your gender");
+            }
+            System.out.println(customerN + "\n" + date + "\n" + genderh);
+            System.out.println("Is this the correct information ? (Yes/No)");
+            confirm = sc.nextLine();
+            if (confirm.endsWith("es")) {
+                consent2 = false;
+            } else {
+                continue;
+            }
 
-        System.out.println("Are you a male or a female  (Male/Female)");
-        gender = sc.nextLine();
-        if (gender.equalsIgnoreCase("male")) {
-            genderh = 'M';
-        } else if (gender.equalsIgnoreCase("female")) {
-            genderh = 'F';
-        } else {
-            genderh = '?';
-            System.out.println("You choose to hide your gender");
         }
-
         System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
         String consent1 = sc.next();
         String comboN = "";
