@@ -126,6 +126,103 @@ class proyek {
         } else {
             System.out.println("You choose not to see the special combo");
         }
+
+        int foodP = 0;
+        int foodS;
+
+        System.out.println("Here is our food menu. Please order a food");
+        System.out.println("1. Chicken fried rice (27000) \n2. Shrimp fried rice (28000) \n3. Chicken katsu with rice (26000) \n4. Goat fried rice (30000) \n5. Beef katsu with rice (35000) \n6. Fried onion rings (12000) \n7. Fried mushroom (14000) \n8. Fried chicken skin (16000)");
+        while (consent4) {
+            if (!foodC) {
+                System.out.println("Food you ordered: ");
+                for (int i = 0;i < foodArr.length;i++) {
+                    for (int j = 0;j < foodArr[0].length;j++) {
+                        if (foodArr[i][j] == null) {
+                            String rep = "Empty slot";
+                            foodArr[i][j] = rep;
+                        }
+                    }
+                    System.out.println(String.join(" | ", foodArr[i]));
+                }
+                System.out.println("Is the food you ordered correct ? (Yes/No) or would you like to clear your selection");
+                confirm2 = sc.next();
+                if (confirm2.endsWith("es")) {
+                    consent4 = false;
+                } else if (confirm2.endsWith("o")) {
+                    for (String[] row: foodArr) {
+                        Arrays.fill(row, null);
+                    }
+                    indF1 = 0;
+                    foodP = 0;
+                    foodC = true;
+                }
+            }
+            while (foodC) {
+                System.out.print("Enter the food number (Type 0 to finish):  (Max 10)");
+                foodS = sc.nextInt();
+                switch (foodS) {
+                    case 1:
+                        foodArr[indF1][0] = "\b\b\bChicken fried rice";
+                        foodArr[indF1][1] = "27000";
+                        indF1++;
+                        foodP += 27000;
+                        break;
+                    case 2:
+                        foodArr[indF1][0] = "\b\b\bShrimp fried rice";
+                        foodArr[indF1][1] = "28000";
+                        indF1++;
+                        foodP += 28000;
+                        break;
+                    case 3:
+                        foodArr[indF1][0] = "\b\b\bChicken katsu with rice";
+                        foodArr[indF1][1] = "26000";
+                        indF1++;
+                        foodP += 26000;
+                        break;
+                    case 4:
+                        foodArr[indF1][0] = "\b\b\bGoat fried rice";
+                        foodArr[indF1][1] = "30000";
+                        indF1++;
+                        foodP += 30000;
+                        break;
+                    case 5:
+                        foodArr[indF1][0] = "\b\b\bBeef katsu with rice";
+                        foodArr[indF1][1] = "35000";
+                        indF1++;
+                        foodP += 35000;
+                        break;
+                    case 6:
+                        foodArr[indF1][0] = "\b\b\bFried onion rings";
+                        foodArr[indF1][1] = "12000";
+                        indF1++;
+                        foodP += 12000;
+                        break;
+                    case 7:
+                        foodArr[indF1][0] = "\b\b\bbFried mushroom";
+                        foodArr[indF1][1] = "14000";
+                        indF1++;
+                        foodP += 14000;
+                        break;
+                    case 8:
+                        foodArr[indF1][0] = "\b\b\bFried chicken skin";
+                        foodArr[indF1][1] = "16000";
+                        indF1++;
+                        foodP += 16000;
+                        break;
+                    case 0:
+                        foodC = false;
+                    default:
+                        System.out.println("Invalid food number");
+                }
+            }
+        }
+
+        int drinkP = 0;
+        int drinkS;
+
+        System.out.println("Here is our beverage menu. Please order a beverage");
+        System.out.println("1. Ice tea (6000)\n2. Lemon tea (8000) \n3. Mineral water (3000) \n4. Orange juice (11000) \n5. Suspicious drink (99999)");
+
     }
      static String eatcon() {
         System.out.println("Take away or dine in?");
