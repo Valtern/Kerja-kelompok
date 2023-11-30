@@ -303,25 +303,25 @@ class proyek {
 
         System.out.println("Your receipt:");
         System.out.println(eatconcl);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Customer name: " + customerN + "\n" + "Gender: " + genderh);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Items that you ordered:");
         System.out.println("COMBO" + "\t\t\t\t\t\t\t\t\t\t\t" + "FOOD" + "\t\t\t\t\t\t\t\t\t\t\t" + "DRINKS");
         for (int i = 0;i < comboArr.length;i++) {
             System.out.println(String.join(" | ", comboArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", foodArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", drinkArr[i]));
         }
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         if (eatconcl.equals("Dine in")) {
             System.out.println("Dine in order");
         } else if (eatconcl.equals("Take away")) {
             System.out.println("Take away order");
         }
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Original price: " + fanddP + "\n" + "Original discount price: " + totalDisc + "\nCustomer fee: 3000" + "\n" + "Tax (10%): " + pTax);
         System.out.println("Total: " + total);
         System.out.println(date);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     static String eatcon() {
         System.out.println("Take away or dine in?");
