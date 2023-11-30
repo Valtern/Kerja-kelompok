@@ -2,21 +2,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 class proyek {
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String customerN = "", date = "", gender, takeOrDine, eatconcl = "", confirm, confirm1, confirm2, confirm3;
+
+        String customerN = "", date = "", gender, eatconcl = "", confirm, confirm1, confirm2, confirm3;
+        String[][] comboArr = new String[10][2];
+        String[][] foodArr = new String[10][2];
+        String[][] drinkArr = new String[10][2];
         char genderh = 0;
-        int totalC = 0, custFee = 3000, totalDisc = 0, pTax, restauFee = 0, comboP;
+        int totalC = 0, custFee = 3000, totalDisc = 0, pTax, restauFee = 0, comboP, indC1 = 0, indF1 = 0,indD1 = 0;
         double tax = 1.10;
         boolean consent2 = true, consent3 = true, consent4 = true, consent5 = true, comboC = true, foodC = true, drinkC = true;
 
-        System.out.println("Take away or dine in?");
-        takeOrDine = sc.nextLine();
-        if (takeOrDine.endsWith("ake")) {
+        String eatmetConc = eatcon();
+        if (eatmetConc.endsWith("ake")) {
             restauFee = 4000;
             eatconcl = "Take away";
             System.out.println("Take away order");
-        } else if (takeOrDine.endsWith("ine")) {
+        } else if (eatmetConc.endsWith("ine")) {
             System.out.println("Dine in order");
             eatconcl = "Dine in";
         }
@@ -47,9 +50,6 @@ class proyek {
         }
         System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
         String consent1 = sc.next();
-        String[] comboN = new String[10];
-        int arIn = 0;
-
 
         if (consent1.equalsIgnoreCase("yes")) {
             System.out.println("The combo that is currently up are: (Max order limit is 10 for combos)");
@@ -58,13 +58,24 @@ class proyek {
             while (consent3) {
                 if (!comboC) {
                     System.out.println("Combo you ordered :");
-                    System.out.println(Arrays.toString(comboN) + "\n" + totalC);
+                    for (int i = 0;i < comboArr.length;i++) {
+                        for (int j = 0;j < comboArr[0].length;j++) {
+                            if (comboArr[i][j] == null) {
+                                String rep = "Empty slot";
+                                comboArr[i][j] = rep;
+                            }
+                        }
+                        System.out.println(String.join(" | ", comboArr[i]));
+                    }
                     System.out.println("Is the item you ordered correct ? (Yes/no) or would you like to clear your selection");
                     confirm1 = sc.next();
                     if (confirm1.endsWith("es")) {
                         consent3 = false;
                     } else if (confirm1.endsWith("o")) {
-                        Arrays.fill(comboN, null);
+                        for (String[] row: comboArr) {
+                            Arrays.fill(row, null);
+                        }
+                        indC1 = 0;
                         totalC = 0;
                         comboC = true;
                     }
@@ -74,29 +85,34 @@ class proyek {
                     comboP = sc.nextInt();
                     switch (comboP) {
                         case 1:
+                            comboArr[indC1][0] = "Chicken fried rice with tea";
+                            comboArr[indC1][1] = "30000";
                             totalC += 30000;
-                            comboN[arIn] = "Chicken fried rice with tea";
-                            arIn++;
+                            indC1++;
                             break;
                         case 2:
-                            totalC += 33000;
-                            comboN[arIn] = "Shrimp fried rice with tea";
-                            arIn++;
+                            comboArr[indC1][0] = "Shrimp fried rice with tea";
+                            comboArr[indC1][1] = "33000";
+                            totalC += 30000;
+                            indC1++;
                             break;
                         case 3:
+                            comboArr[indC1][0] = "Chicken katsu (with rice) with lemon tea";
+                            comboArr[indC1][1] = "31000";
+                            indC1++;
                             totalC += 31000;
-                            comboN[arIn] = "Chicken katsu (with rice) with lemon tea";
-                            arIn++;
                             break;
                         case 4:
+                            comboArr[indC1][0] = "Beef katsu (with rice) with tea";
+                            comboArr[indC1][1] = "46000";
+                            indC1++;
                             totalC += 46000;
-                            comboN[arIn] = "Beef katsu (with rice) with tea";
-                            arIn++;
                             break;
                         case 5:
+                            comboArr[indC1][0] = "Goat fried rice with lemon tea";
+                            comboArr[indC1][1] = "39000";
+                            indC1++;
                             totalC += 39000;
-                            comboN[arIn] = "Goat fried rice with lemon tea";
-                            arIn++;
                             break;
                         case 0:
                             comboC = false;
@@ -111,8 +127,6 @@ class proyek {
             System.out.println("You choose not to see the special combo");
         }
 
-        String[] foodN = new String[10];
-        int arIn1 = 0;
         int foodP = 0;
         int foodS;
 
@@ -121,13 +135,24 @@ class proyek {
         while (consent4) {
             if (!foodC) {
                 System.out.println("Food you ordered: ");
-                System.out.println(Arrays.toString(foodN) + "\n" + foodP);
+                for (int i = 0;i < foodArr.length;i++) {
+                    for (int j = 0;j < foodArr[0].length;j++) {
+                        if (foodArr[i][j] == null) {
+                            String rep = "Empty slot";
+                            foodArr[i][j] = rep;
+                        }
+                    }
+                    System.out.println(String.join(" | ", foodArr[i]));
+                }
                 System.out.println("Is the food you ordered correct ? (Yes/No) or would you like to clear your selection");
                 confirm2 = sc.next();
                 if (confirm2.endsWith("es")) {
                     consent4 = false;
                 } else if (confirm2.endsWith("o")) {
-                    Arrays.fill(foodN, null);
+                    for (String[] row: foodArr) {
+                        Arrays.fill(row, null);
+                    }
+                    indF1 = 0;
                     foodP = 0;
                     foodC = true;
                 }
@@ -137,44 +162,52 @@ class proyek {
                 foodS = sc.nextInt();
                 switch (foodS) {
                     case 1:
+                        foodArr[indF1][0] = "\b\b\bChicken fried rice";
+                        foodArr[indF1][1] = "27000";
+                        indF1++;
                         foodP += 27000;
-                        foodN[arIn1] = "Chicken fried rice";
-                        arIn1++;
                         break;
                     case 2:
+                        foodArr[indF1][0] = "\b\b\bShrimp fried rice";
+                        foodArr[indF1][1] = "28000";
+                        indF1++;
                         foodP += 28000;
-                        foodN[arIn1] = "Shrimp fried rice";
-                        arIn1++;
                         break;
                     case 3:
+                        foodArr[indF1][0] = "\b\b\bChicken katsu with rice";
+                        foodArr[indF1][1] = "26000";
+                        indF1++;
                         foodP += 26000;
-                        foodN[arIn1] = "Chicken katsu with rice";
-                        arIn1++;
                         break;
                     case 4:
+                        foodArr[indF1][0] = "\b\b\bGoat fried rice";
+                        foodArr[indF1][1] = "30000";
+                        indF1++;
                         foodP += 30000;
-                        foodN[arIn1] = "Goat fried rice";
-                        arIn1++;
                         break;
                     case 5:
+                        foodArr[indF1][0] = "\b\b\bBeef katsu with rice";
+                        foodArr[indF1][1] = "35000";
+                        indF1++;
                         foodP += 35000;
-                        foodN[arIn1] = "Beef katsu with rice";
-                        arIn1++;
                         break;
                     case 6:
+                        foodArr[indF1][0] = "\b\b\bFried onion rings";
+                        foodArr[indF1][1] = "12000";
+                        indF1++;
                         foodP += 12000;
-                        foodN[arIn1] = "Fried onion rings";
-                        arIn1++;
                         break;
                     case 7:
+                        foodArr[indF1][0] = "\b\b\bbFried mushroom";
+                        foodArr[indF1][1] = "14000";
+                        indF1++;
                         foodP += 14000;
-                        foodN[arIn1] = "Fried mushroom";
-                        arIn1++;
                         break;
                     case 8:
+                        foodArr[indF1][0] = "\b\b\bFried chicken skin";
+                        foodArr[indF1][1] = "16000";
+                        indF1++;
                         foodP += 16000;
-                        foodN[arIn1] = "Fried chicken skin";
-                        arIn1++;
                         break;
                     case 0:
                         foodC = false;
@@ -184,8 +217,6 @@ class proyek {
             }
         }
 
-        String[] drinkN = new String[10];
-        int arIn2 = 0;
         int drinkP = 0;
         int drinkS;
 
@@ -194,14 +225,25 @@ class proyek {
 
         while (consent5) {
             if (!drinkC) {
-                System.out.println("drinks you ordered: ");
-                System.out.println(Arrays.toString(drinkN) + "\n" + drinkP);
+                System.out.println("Drinks you ordered: ");
+                for (int i = 0;i < drinkArr.length;i++) {
+                    for (int j = 0;j < drinkArr[0].length;j++) {
+                        if (drinkArr[i][j] == null) {
+                            String rep = "Empty slot";
+                            drinkArr[i][j] = rep;
+                        }
+                    }
+                    System.out.println(String.join(" | ", drinkArr[i]));
+                }
                 System.out.println("Is drinks you ordered correct ? (Yes/No) or would you like to clear your selection");
                 confirm3 = sc.next();
                 if (confirm3.endsWith("es")) {
                     consent5 = false;
                 } else if (confirm3.endsWith("o")) {
-                    Arrays.fill(drinkN, null);
+                    for (String[] row: drinkArr) {
+                        Arrays.fill(row, null);
+                    }
+                    indD1 = 0;
                     drinkP = 0;
                     drinkC = true;
                 }
@@ -211,29 +253,34 @@ class proyek {
                 drinkS = sc.nextInt();
                 switch (drinkS) {
                     case 1:
+                        drinkArr[indD1][0] = "\b\bIce tea";
+                        drinkArr[indD1][1] = "6000";
+                        indD1++;
                         drinkP += 6000;
-                        drinkN[arIn2] = "Ice tea";
-                        arIn2++;
                         break;
                     case 2:
+                        drinkArr[indD1][0] = "\b\bLemon tea";
+                        drinkArr[indD1][1] = "8000";
+                        indD1++;
                         drinkP += 8000;
-                        drinkN[arIn2] = "Lemon tea";
-                        arIn2++;
                         break;
                     case 3:
+                        drinkArr[indD1][0] = "\b\bMineral water";
+                        drinkArr[indD1][1] = "3000";
+                        indD1++;
                         drinkP += 3000;
-                        drinkN[arIn2] = "Mineral water";
-                        arIn2++;
                         break;
                     case 4:
+                        drinkArr[indD1][0] = "\b\bOrange juice";
+                        drinkArr[indD1][1] = "11000";
+                        indD1++;
                         drinkP += 11000;
-                        drinkN[arIn2] = "Orange juice";
-                        arIn2++;
                         break;
                     case 5:
+                        drinkArr[indD1][0] = "\b\bSuspicious drink";
+                        drinkArr[indD1][1] = "99999";
+                        indD1++;
                         drinkP += 99999;
-                        drinkN[arIn2] = "Suspicious drink";
-                        arIn2++;
                         break;
                     case 0:
                         drinkC = false;
@@ -253,59 +300,38 @@ class proyek {
         int totalDwF = totalDisc + custFee + restauFee;
         int total = (int) (totalDwF * tax);
         pTax = (int) (totalDwF * 0.10);
-        String out1 = "";
-        for (int i = 0; i < comboN.length; i++) {
-            out1 = Arrays.toString(comboN);
-            if (out1.contains("null")) {
-                out1 = out1.replace("null", "");
-            } else if (out1.contains("null,")) {
-                out1 = out1.replace("null,", "");
-            } else if (out1.contains(", ")) {
-                out1 = out1.replace(", ", "");
-            }
-        }
-        String out2 = "";
-        for (int i = 0; i < foodN.length; i++) {
-            out2 = Arrays.toString(foodN);
-            if (out2.contains("null")) {
-                out2 = out2.replace("null", "");
-            } else if (out2.contains("null,")) {
-                out2 = out2.replace("null,", "");
-            } else if (out2.contains(", ")) {
-                out2 = out2.replace(", ", "");
-            }
-        }
-        String out3 = "";
-        for (int i = 0; i < drinkN.length; i++) {
-            out3 = Arrays.toString(drinkN);
-            if (out3.contains("null")) {
-                out3 = out3.replace("null", "");
-            } else if (out3.contains("null,")) {
-                out1 = out3.replace("null,", "");
-            } else if (out3.contains(", ")) {
-                out3 = out3.replace(", ", "");
-            }
-        }
 
         System.out.println("Your receipt:");
         System.out.println(eatconcl);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Customer name: " + customerN + "\n" + "Gender: " + genderh);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Food that you ordered:");
-        System.out.println(out1 + "\n" + out2 + "\n" + out3);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Items that you ordered:");
+        System.out.println("COMBO" + "\t\t\t\t\t\t\t\t\t\t\t" + "FOOD" + "\t\t\t\t\t\t\t\t\t\t\t" + "DRINKS");
+        for (int i = 0;i < comboArr.length;i++) {
+            System.out.println(String.join(" | ", comboArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", foodArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", drinkArr[i]));
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         if (eatconcl.equals("Dine in")) {
             System.out.println("Dine in order");
         } else if (eatconcl.equals("Take away")) {
             System.out.println("Take away order");
         }
-
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Original price: " + fanddP + "\n" + "Original discount price: " + totalDisc + "\nCustomer fee: 3000" + "\n" + "Tax (10%): " + pTax);
         System.out.println("Total: " + total);
         System.out.println(date);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
+    static String eatcon() {
+        System.out.println("Take away or dine in?");
+        String eatcon = sc.nextLine();
+        return eatcon;
+    }
+    static String comboCon() {
+        System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
+        String comboCon = sc.nextLine();
+        return comboCon;
+    }
+
 }
