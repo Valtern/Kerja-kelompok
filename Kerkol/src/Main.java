@@ -3,9 +3,33 @@ import java.util.Scanner;
 
 class proyek {
     static Scanner sc = new Scanner(System.in);
+    static Scanner sp = new Scanner(System.in);
+
+    static String eatcon() {
+        System.out.println("Take away or dine in?");
+        return sp.next();
+    }
+    static String comboCon() {
+        System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
+        String comboCon = sc.nextLine();
+        return comboCon;
+    }
+    static String eatcon2() {
+        String eatconlus = "";
+        eatconlus = eatconlus + eatcon();
+        if (eatconlus.endsWith("ake")) {
+            System.out.println("Take away order");
+            eatconlus = "Take away";
+        } else if (eatconlus.endsWith("ine")){
+            System.out.println("Dine in order");
+            eatconlus = "Dine in";
+        }
+        return eatconlus;
+    }
+
     public static void main(String[] args) {
 
-        String customerN = "", date = "", gender, eatconcl = "", confirm, confirm1, confirm2, confirm3;
+        String customerN = "", date = "", gender, confirm, confirm1, confirm2, confirm3;
         String[][] comboArr = new String[10][2];
         String[][] foodArr = new String[10][2];
         String[][] drinkArr = new String[10][2];
@@ -13,16 +37,6 @@ class proyek {
         int totalC = 0, custFee = 3000, totalDisc = 0, pTax, restauFee = 0, comboP, indC1 = 0, indF1 = 0,indD1 = 0;
         double tax = 1.10;
         boolean consent2 = true, consent3 = true, consent4 = true, consent5 = true, comboC = true, foodC = true, drinkC = true;
-
-        String eatmetConc = eatcon();
-        if (eatmetConc.endsWith("ake")) {
-            restauFee = 4000;
-            eatconcl = "Take away";
-            System.out.println("Take away order");
-        } else if (eatmetConc.endsWith("ine")) {
-            System.out.println("Dine in order");
-            eatconcl = "Dine in";
-        }
         while (consent2) {
             System.out.println("Please enter your name:");
             customerN = sc.nextLine();
@@ -48,8 +62,7 @@ class proyek {
             }
 
         }
-        System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
-        String consent1 = sc.next();
+        String consent1 = comboCon();
 
         if (consent1.equalsIgnoreCase("yes")) {
             System.out.println("The combo that is currently up are: (Max order limit is 10 for combos)");
@@ -296,25 +309,42 @@ class proyek {
         } else if (fanddP >= 100000) {
             totalDisc = (int) (fanddP * 0.85);
         }
+        String eatfinality = "";
+        eatfinality = eatfinality + eatcon2();
 
-        int totalDwF = totalDisc + custFee + restauFee;
+        int totalDwF = totalDisc + custFee;
+        if (eatfinality.equalsIgnoreCase("Take away")) {
+            restauFee = 4000;
+            totalDwF = totalDwF + restauFee;
+        } else if (eatfinality.equalsIgnoreCase("Dine in")){
+            eatfinality = "Dine in";
+        }
         int total = (int) (totalDwF * tax);
         pTax = (int) (totalDwF * 0.10);
 
         System.out.println("Your receipt:");
-        System.out.println(eatconcl);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Customer name: " + customerN + "\n" + "Gender: " + genderh);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Items that you ordered:");
-        System.out.println("COMBO" + "\t\t\t\t\t\t\t\t\t\t\t" + "FOOD" + "\t\t\t\t\t\t\t\t\t\t\t" + "DRINKS");
+        System.out.println("Items that you ordered:\n");
+        System.out.println("COMBO");
         for (int i = 0;i < comboArr.length;i++) {
-            System.out.println(String.join(" | ", comboArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", foodArr[i]) +"\t\t\t\t\t\t\t"+  String.join(" | ", drinkArr[i]));
+            System.out.println(String.join(" | ", comboArr[i]));
+        }
+        System.out.println("\n");
+        System.out.println("FOOD");
+        for (int i = 0;i < foodArr.length;i++) {
+            System.out.println(String.join(" | ", foodArr[i]));
+        }
+        System.out.println("\n");
+        System.out.println("DRINKS");
+        for (int i = 0;i < drinkArr.length;i++) {
+            System.out.println(String.join(" | ", drinkArr[i]));
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        if (eatconcl.equals("Dine in")) {
+        if (eatfinality.equals("Dine in")) {
             System.out.println("Dine in order");
-        } else if (eatconcl.equals("Take away")) {
+        } else if (eatfinality.equals("Take away")) {
             System.out.println("Take away order");
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -323,15 +353,4 @@ class proyek {
         System.out.println(date);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-    static String eatcon() {
-        System.out.println("Take away or dine in?");
-        String eatcon = sc.nextLine();
-        return eatcon;
-    }
-    static String comboCon() {
-        System.out.println("Welcome to our restaurant ! \nWe currently have a special combo going on right now would you like to order them ? (Yes/No)");
-        String comboCon = sc.nextLine();
-        return comboCon;
-    }
-
 }
